@@ -1,0 +1,854 @@
+{
+  "intents": [
+    {
+      "intent": "Bolsas",
+      "examples": [
+        {
+          "text": "Bolsa"
+        },
+        {
+          "text": "Como é o fomento dos cursos?"
+        },
+        {
+          "text": "Como funcionam as bolsas?"
+        },
+        {
+          "text": "Descontos de mensalidade"
+        },
+        {
+          "text": "Existem bolsas?"
+        },
+        {
+          "text": "Quais tipos de bolsas são disponibilizadas?"
+        },
+        {
+          "text": "Sistema de bolsas"
+        }
+      ],
+      "description": "Intenção de responder perguntas referentes à bolsas dos cursos de mestrado e doutorado."
+    },
+    {
+      "intent": "Disciplina",
+      "examples": [
+        {
+          "text": "Quais as disciplinas?"
+        },
+        {
+          "text": "Quais aulas do curso?"
+        },
+        {
+          "text": "Qual acompanhamento de dissertação/tese?"
+        }
+      ],
+      "description": "Intenção de responder perguntas referentes à disciplinas trabalhadas no curso"
+    },
+    {
+      "intent": "Documentos_Inscricao",
+      "examples": [
+        {
+          "text": "Como faço para me matricular?"
+        },
+        {
+          "text": "Como funciona a matrícula?"
+        },
+        {
+          "text": "Inscrição"
+        },
+        {
+          "text": "Matrícula"
+        },
+        {
+          "text": "O que eu preciso para me inscrever?"
+        },
+        {
+          "text": "Quais documentos necessários para a inscrição?"
+        }
+      ],
+      "description": "Intenções de perguntas referentes à inscrição em cursos de mestrado e/ou doutorado."
+    },
+    {
+      "intent": "Enderecos",
+      "examples": [
+        {
+          "text": "Endereço"
+        },
+        {
+          "text": "Onde devo ir para encontrar a tesouraria?"
+        },
+        {
+          "text": "Onde devo ir para encontrar o setor de bolsas?"
+        },
+        {
+          "text": "Onde encontro a tesouraria?"
+        },
+        {
+          "text": "Onde encontro o setor de bolsas?"
+        },
+        {
+          "text": "Qual endereço?"
+        }
+      ],
+      "description": "Intenção de responder perguntas referentes à localidade do Campus e setores."
+    },
+    {
+      "intent": "Mensalidade",
+      "examples": [
+        {
+          "text": "Mensalidade"
+        },
+        {
+          "text": "Qual o valor da mensalidade?"
+        },
+        {
+          "text": "Qual o valor mensal?"
+        }
+      ],
+      "description": "Intenção de responder perguntas referentes à mensalidade dos cursos."
+    },
+    {
+      "intent": "Requisicao_Bolsas",
+      "examples": [
+        {
+          "text": "Como posso pedir a bolsa?"
+        },
+        {
+          "text": "Como posso pedir o fomento?"
+        },
+        {
+          "text": "Como solicitar bolsa?"
+        },
+        {
+          "text": "Como solicitar fomento?"
+        },
+        {
+          "text": "Solicitação de bolsa"
+        }
+      ],
+      "description": "Intenção de responder perguntas referentes à dúvidas de como solicitar bolsas de estudos."
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Area_Concentracao",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Inteligência artificial aplicada à automação e robótica",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Nanoeletrônica e circuitos integrados",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Processamento de sinais e imagens",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Enderecos",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Bolsas",
+          "synonyms": [
+            "Desconto"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SBC",
+          "synonyms": [
+            "São Bernardo",
+            "São Bernardo do Campo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "SP",
+          "synonyms": [
+            "São Paulo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Tesouraria",
+          "synonyms": [
+            "Pagamento"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Mestrado_Doutorado",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Doutorado",
+          "synonyms": [
+            "doutorado"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Mestrado",
+          "synonyms": [
+            "mestrado"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá. Como posso te ajudar?"
+              },
+              {
+                "text": "Em que posso ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_1_1633557099449",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1633551974285",
+      "context": {
+        "Mestrado_Doutorado": "@Mestrado_Doutorado"
+      },
+      "conditions": "@Mestrado_Doutorado",
+      "event_name": "input",
+      "dialog_node": "handler_1_1633551974302"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Qual o curso?"
+              },
+              {
+                "text": "Você deseja informações sobre Mestrado ou Doutorado?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "parent": "slot_1_1632965638804",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1632965638806",
+      "previous_sibling": "handler_8_1632965638806"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1633549654268",
+      "context": {
+        "Mestrado_Doutorado": "@Mestrado_Doutorado"
+      },
+      "conditions": "@Mestrado_Doutorado",
+      "event_name": "input",
+      "dialog_node": "handler_4_1633549654280"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1633551993527",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1633551993541",
+      "previous_sibling": "handler_6_1633551993541"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1633552999712",
+      "context": {
+        "Enderecos": "@Enderecos"
+      },
+      "conditions": "@Enderecos",
+      "event_name": "input",
+      "dialog_node": "handler_5_1633552999712"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1633551993527",
+      "context": {
+        "Mestrado_Doutorado": "@Mestrado_Doutorado"
+      },
+      "conditions": "@Mestrado_Doutorado",
+      "event_name": "input",
+      "dialog_node": "handler_6_1633551993541"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Qual setor/Campus você deseja?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_10_1633552999712",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1633552999712",
+      "previous_sibling": "handler_5_1633552999712"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_1_1632965638804",
+      "context": {
+        "Mestrado_Doutorado": "@Mestrado_Doutorado"
+      },
+      "conditions": "@Mestrado_Doutorado",
+      "event_name": "input",
+      "dialog_node": "handler_8_1632965638806"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1633551974285",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1633551974302",
+      "previous_sibling": "handler_1_1633551974302"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1633549654268",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1633549654280",
+      "previous_sibling": "handler_4_1633549654280"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O setor de bolsas é encontrado em:\nCampus SBC: Prédio A - Térreo.\nCampus SP: 6º Andar"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633552831871",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Enderecos:Bolsas",
+      "dialog_node": "node_10_1633555714614",
+      "previous_sibling": "node_3_1633555616334"
+    },
+    {
+      "type": "standard",
+      "title": "MatriculaDoutorado",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Para a matrícula nos cursos de doutorado, são necessários os documentos:\n    Formulário de inscrição\n    1 foto Recente 3x4\n    2 cartas de recomendação\n    Cópia dos diploma da graduação e do Curso de Mestrado ou atestado de conclusão\n    Cópias do Histórico Escolar do Curso Superior e do Curso de Mestrado\n    Curriculum Lattes Atualizado\n    Cópia do RG\n    Cópia do CPF\n    Cópia da Certidão de Nascimento ou Casamento\n    Cópia do Comprovante de Residência\n    PGE (Solicitação de Orientador)\n    Projeto de pesquisa"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1632961778094",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Mestrado_Doutorado:Doutorado",
+      "dialog_node": "node_1_1632965504710",
+      "previous_sibling": "slot_1_1632965638804"
+    },
+    {
+      "type": "standard",
+      "title": "Disciplinas",
+      "output": {
+        "generic": [
+          {
+            "title": "Selecione a área de concentração",
+            "options": [
+              {
+                "label": "Nanoeletrônica e Circuitos Integrados",
+                "value": {
+                  "input": {
+                    "text": "Nanoeletrônica e Circuitos Integrados"
+                  }
+                }
+              },
+              {
+                "label": "Inteligência Artificial Aplicada à Automação e Robótica",
+                "value": {
+                  "input": {
+                    "text": "Inteligência Artificial Aplicada à Automação e Robótica"
+                  }
+                }
+              },
+              {
+                "label": "Processamento de Sinais e Imagens",
+                "value": {
+                  "input": {
+                    "text": "Processamento de Sinais e Imagens"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#Disciplina",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1633556503154",
+      "previous_sibling": "node_6_1633552831871"
+    },
+    {
+      "type": "standard",
+      "title": "Mensagem final",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Caso tenha mais alguma dúvida, estou aqui! =)"
+              },
+              {
+                "text": "Posso ajudar em algo mais?"
+              },
+              {
+                "text": "Se precisar tirar mais dúvidas, fique à vontade!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "Bem-vindo"
+      },
+      "conditions": "",
+      "dialog_node": "node_1_1633557099449",
+      "previous_sibling": "node_1_1633556503154"
+    },
+    {
+      "type": "frame",
+      "title": "Mensalidade",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "A mensalidade para os cursos de mestrado e doutorado para os cursos de pós-graduação em engenharia elétrica é de R$ 2.265,00."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "#Mensalidade",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_2_1633549218420",
+      "previous_sibling": "node_9_1632961778094"
+    },
+    {
+      "type": "frame",
+      "title": "Bolsa",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Tanto para mestrado como doutorado, contamos com bolsas da agência de fomento federal CAPES para a dedicação em tempo integral e parcial. \n\nAlém disso, a FEI oferece, também, bolsas de isenção de pagamento de taxas escolares."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "#Bolsas",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_3_1633550492641",
+      "previous_sibling": "node_2_1633549218420"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "A tesouraria é encontrada em:\nCampus SBC: Prédio B - Térreo.\nCampus SP: 6º Andar."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633552831871",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Enderecos:Tesouraria",
+      "dialog_node": "node_3_1633555616334",
+      "previous_sibling": "node_6_1633555450214"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "> Acompanhamento de Dissertação / Tese\n> Aplicações em Processamento de Sinais\n> Biopotenciais: Características, Aquisição e Processamento\n> Fundamentos da Visão Computacional\n> Inteligência Computacional\n> Introdução à Engenharia Biomédica\n> Introdução à Pesquisa Científica\n> Métodos Numéricos Aplicados em Análise de Sinais\n> Processamento de Sinais Discretos no Tempo\n> Processamento do Sinal de Voz\n> Técnicas Avançadas de Programação\n> Redação Ciêntífica\n> Reconhecimento de Padrões em Estatística"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1633556503154",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Area_Concentracao:(Processamento de sinais e imagens)",
+      "dialog_node": "node_5_1633556889001",
+      "previous_sibling": "node_9_1633556818497"
+    },
+    {
+      "type": "standard",
+      "title": "MatriculaMestrado",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Para a matrícula nos cursos de mestrado, são necessários os seguintes documentos:\n    Formulário de inscrição\n    1 foto Recente 3x4\n    2 cartas de recomendação\n    Cópia do diploma da graduação ou atestado de conclusão\n    Cópia do Histórico Escolar do Curso Superior\n    Cópia do RG\n    Cópia do CPF\n    Cópia da Certidão de Nascimento ou Casamento\n    Cópia do Comprovante de Residência\n    Curriculum Vitae atualizado"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1632961778094",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Mestrado_Doutorado:Mestrado",
+      "dialog_node": "node_6_1632965535410",
+      "previous_sibling": "node_1_1632965504710"
+    },
+    {
+      "type": "frame",
+      "title": "Solicitar Bolsa",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "A solicitação deve ser feita no ato da matrícula, os critérios para a concessão da bolsa, para alunos aprovados no processo seletivo, são baseados em: Avaliação de mérito de desempenho acadêmico e da experiência profissional.\nOs alunos ainda podem solicitar bolsas em órgãos externos como: FAPESP e CNPq."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "#Requisicao_Bolsas",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1633551516741",
+      "previous_sibling": "node_3_1633550492641"
+    },
+    {
+      "type": "frame",
+      "title": "Endereços",
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "#Enderecos",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1633552831871",
+      "previous_sibling": "node_6_1633551516741"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O endereço do Campus São Paulo é:\nRua Tamandaré, 688 - Liberdade, São Paulo - SP. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Campus SP",
+            "source": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.111328702442!2d-46.63801038447569!3d-23.56444476759268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a16c112667%3A0x7cd89d5bf0157302!2sRua%20Tamandar%C3%A9%2C%20688%20-%20Liberdade%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1633555432400!5m2!1spt-BR!2sbr",
+            "response_type": "iframe"
+          }
+        ]
+      },
+      "parent": "node_6_1633552831871",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Enderecos:SP",
+      "dialog_node": "node_6_1633555450214",
+      "previous_sibling": "node_7_1633552968711"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "> Acompanhamento de Dissertação / Tese\n> Aspectos Específicos de Transistores Nanométrico\n> Caracterização Elétrica de Dispositivos MOS\n> Circuitos e Sistemas Analógicos\n> Dispositivos Semicondutores\n> Dispositivos Semicondutores Implementados em Tecnologia SOI\n> Dispositivos SOI MOSFETs de Múltiplas Portas\n> Fabricação e Modelagem de Transistores MOS: Transistores Nanométricos e TFTs.\n> Influência da Temperatura na Operação de Dispositivos Eletrônicos\n> Introdução ao Projeto de Circuitos Integrados Dedicados\n> Modelagem de Transistores MOS em tecnologia SOI\n> Simulação de Processos e Dispositivos Eletrônicos\n> Tópicos Avançados de Projetos de Circuitos Integrados Analógicos"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1633556503154",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Area_Concentracao:(Nanoeletrônica e circuitos integrados)",
+      "dialog_node": "node_6_1633556736481"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O campus SBC é localizado em:\nAv. Humberto de Alencar Castelo Branco, 3.972 - Bairro Assunção - São Bernardo do Campo - SP - CEP 09850-901"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Localização do Campus SBC",
+            "source": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.6486943786117!2d-46.58158658447277!3d-23.724236273513576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce4158ef9c7c05%3A0x776b798985695f52!2sCentro%20Universit%C3%A1rio%20FEI%20-%20Campus%20S%C3%A3o%20Bernardo%20do%20Campo!5e0!3m2!1spt-BR!2sbr!4v1633553098379!5m2!1spt-BR!2sbr",
+            "response_type": "iframe"
+          }
+        ]
+      },
+      "parent": "node_6_1633552831871",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Enderecos:SBC",
+      "dialog_node": "node_7_1633552968711",
+      "previous_sibling": "slot_10_1633552999712"
+    },
+    {
+      "type": "frame",
+      "title": "Inscricao/Matricula",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "#Documentos_Inscricao",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_9_1632961778094",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "> Acompanhamento de Dissertação / Tese\n> Algoritmos Computacionais\n> Engenharia de Software em Experimentos Científicos\n> Fundamentos da Inteligência Artificial\n> Inteligência Artificial Probabilística\n> Interação Humano-Computador em Sistemas Adaptativos\n> Programação Científica\n> Robótica Móvel\n> Tópicos Especiais em Aprendizagem"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1633556503154",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1633557099449"
+      },
+      "conditions": "@Area_Concentracao:(Inteligência artificial aplicada à automação e robótica)",
+      "dialog_node": "node_9_1633556818497",
+      "previous_sibling": "node_6_1633556736481"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1633552831871",
+      "variable": "$Enderecos",
+      "dialog_node": "slot_10_1633552999712"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_9_1632961778094",
+      "variable": "$Mestrado_Doutorado",
+      "dialog_node": "slot_1_1632965638804"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1633550492641",
+      "variable": "$Mestrado_Doutorado",
+      "dialog_node": "slot_6_1633551974285"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1633551516741",
+      "variable": "$Mestrado_Doutorado",
+      "dialog_node": "slot_7_1633551993527"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1633549218420",
+      "variable": "$Mestrado_Doutorado",
+      "dialog_node": "slot_9_1633549654268"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Você quis dizer:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Nenhuma das anteriores"
+    },
+    "human_agent_assist": {
+      "prompt": "Você quis dizer:"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "Lab3 - ChatbotFEI",
+  "language": "pt-br",
+  "description": "Chatbot que responde dúvidas sobre o curso de mestrado e doutorado em engenharia elétrica na FEI."
+}
